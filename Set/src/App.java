@@ -27,7 +27,7 @@ public class App extends Set {
                     continue;
                     //to not start with the same two cards
                 }
-                int curr = createBoard(Deck.get(i),Deck.get(j));
+                int curr = createBigBoard(Deck.get(i),Deck.get(j));
                 if(curr >= biggest){
                     biggest = curr;
                     sC1 = Deck.get(i);
@@ -37,5 +37,8 @@ public class App extends Set {
             }
         }
         System.out.println("Biggest size is " + biggest + ", starting with cards: " + sC1 + " and " + sC2 );
+        ArrayList<Card> randomBoard = createRandomBoard(12);
+        System.out.println("Random board of size 12: " + randomBoard); 
+        
     }
 }
