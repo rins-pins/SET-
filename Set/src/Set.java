@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 class Set {
-        static ArrayList<Card> Deck = new ArrayList<Card>();
+        public static ArrayList<Card> Deck = new ArrayList<Card>();
         // legend: R = red, G = green, P = purple, O = oval, S= squiggle, D= diamond, F = filled, E= empty, L = lines
         public static boolean isASet(Card card1, Card card2, Card card3){
             boolean setState = true;
@@ -32,7 +32,46 @@ class Set {
                     }
                 }
             }
-            System.out.println("Deck Created! Total length: " + Deck.size());
         }
+        public static int createBigBoard(Card c1, Card c2){
+            ArrayList<Card> board = new ArrayList<Card>();
+            board.add(c1);
+            board.add(c2);
+            Deck.remove(c1);
+            Deck.remove(c2);
+            for (int i = 0; i < Deck.size(); i++){
+                boolean isVal = true;
+                Card curr = Deck.get(i);
+                //check if the current card can make a set with any combination of the current cards
+                for(int j = 0; j< board.size(); j++){
+                    for(int k = 0; k<board.size(); k++){
+                        // dont include the same card twice
+                        if(k == j){
+                            continue;
+                        }
+                        if(isASet(board.get(j),board.get(k),curr)){
+                            isVal = false;
+                        }
+                    }
+                }
+                if(isVal){
+                    board.add(curr);
+                }
+            }
+            Deck.clear();
+            createDeck();
+            return board.size();
+        }
+
+        public static ArrayList<Card> createRandomBoard(int size){
+            ArrayList<Card> board = new ArrayList<Card>();
+            for(int i = 0; i < size; i++){
+                int rand = (int)(Math.random() * Deck.size());
+                board.add(Deck.get(rand));
+                Deck.remove(rand);
+            }
+            return board;
+        }
+
 
 }
