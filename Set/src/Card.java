@@ -20,5 +20,9 @@ class Card{
     public int getShading(){
         return shading;
     }
+    public String toString(){
+        return " " + num + ", " + color + ", " + shape + ", " + shading;
+
+    }
     
 }
