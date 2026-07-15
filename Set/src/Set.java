@@ -33,7 +33,7 @@ class Set {
                 }
             }
         }
-        public static int createBoard(Card c1, Card c2){
+        public static int createBigBoard(Card c1, Card c2){
             ArrayList<Card> board = new ArrayList<Card>();
             board.add(c1);
             board.add(c2);
@@ -61,6 +61,16 @@ class Set {
             Deck.clear();
             createDeck();
             return board.size();
+        }
+
+        public static ArrayList<Card> createRandomBoard(int size){
+            ArrayList<Card> board = new ArrayList<Card>();
+            for(int i = 0; i < size; i++){
+                int rand = (int)(Math.random() * Deck.size());
+                board.add(Deck.get(rand));
+                Deck.remove(rand);
+            }
+            return board;
         }
 
 
